@@ -1,12 +1,6 @@
 
-let tabla = document.querySelector('#personas');
-console.log(personas.rows.length);
-//var numFilas = tabla.rows.length;
-
-let nombre = document.querySelector('#nombre');
-let apellido = document.querySelector('#apellido');
-let celular = document.querySelector('#celular');
-
+var btnAgregar = document.getElementById('agregar');
+btnAgregar.addEventListener('click', createRow);
 
 function numFilas() {
     let tabla = document.querySelector('#personas');
@@ -16,9 +10,15 @@ function numFilas() {
 
  function createRow() {
 
-    // let row = tabla.insertRow(this.numFilas);
+     let tabla = document.querySelector('#personas');
+     console.log(personas.rows.length);
+     //var numFilas = tabla.rows.length;
+
+     let nombre = document.querySelector('#nombre');
+     let apellido = document.querySelector('#apellido');
+     let celular = document.querySelector('#celular'); // let row = tabla.insertRow(this.numFilas);
      let row = tabla.insertRow(numFilas());
-     console.log(this.numFilas);
+     //console.log(this.numFilas);
      let cell1 = row.insertCell(0);
      let cell2 = row.insertCell(1);
      let cell3 = row.insertCell(2);
@@ -29,9 +29,9 @@ function numFilas() {
      cell1.setAttribute('scope','row')
 
      cell1.innerHTML =`<b>${numFilas()+1}</b>`;
-     cell2.innerHTML = this.nombre.value;
-     cell3.innerHTML = this.apellido.value;
-     cell4.innerHTML = this.celular.value;
+     cell2.innerHTML = nombre.value;
+     cell3.innerHTML = apellido.value;
+     cell4.innerHTML = celular.value;
      cell5.innerHTML = `<a href="#" class="btn btn-primary">Eliminar</a>`;
      cell6.innerHTML =`<a href="#" class="btn btn-warning">Editar</a>`;
      console.log(numFilas());
