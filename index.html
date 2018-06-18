@@ -74,10 +74,14 @@
                     </table>
                 </div>
                 <div class="col-4 border border p-2">
-                    <form>
+                    <form id="formPersona">
+                        <div class="form-group" >
+                            <label for="">Codigo</label>
+                            <input id="codigo"  type="text" class="form-control"   placeholder="Codigo">
+                        </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nombres</label>
-                            <input id="nombre" value="Hernesto" type="text" class="form-control"   placeholder="Ingrese sus Nombres">
+                            <input id="nombre"  type="text" class="form-control"   placeholder="Ingrese sus Nombres">
                             <small  class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
@@ -89,8 +93,8 @@
                             <input id="celular" value="164546" type="text" class="form-control" placeholder="Numero de Celular">
                         </div>
 
-                        <div class="d-flex justify-content-around">
-                            <button id="agregar" type="button"  class="btn btn-primary">Agregar</button>
+                        <div class="d-flex justify-content-around mb-2">
+                            <input id="agregar" type="button"  class="btn btn-primary" value="Agregar">
                             <button  type="reset" class="btn btn-primary">Cancelar</button>
                         </div>
 
