@@ -1,23 +1,24 @@
 
 var btnAgregar = document.getElementById('agregar');
+document.getElementById("codigo").disabled = true;
+let accion = document.getElementById('agregar');
 btnAgregar.addEventListener('click', createRow);
+let tabla = document.querySelector('#personas');
 
 function numFilas() {
-    let tabla = document.querySelector('#personas');
     return  tabla.rows.length;
 }
 
-
  function createRow() {
+     let codigo = document.querySelector('#codigo');
+     let nombre = document.querySelector('#nombre');
+     let apellido = document.querySelector('#apellido');
+     let celular = document.querySelector('#celular'); // let row = tabla.insertRow(this.numFilas);
 
         if (btnAgregar.value == 'Agregar') {
-            let tabla = document.querySelector('#personas');
-            console.log(personas.rows.length);
+            //tabla = document.querySelector('#personas');
+            //console.log(personas.rows.length);
             //var numFilas = tabla.rows.length;
-
-            let nombre = document.querySelector('#nombre');
-            let apellido = document.querySelector('#apellido');
-            let celular = document.querySelector('#celular'); // let row = tabla.insertRow(this.numFilas);
             let row = tabla.insertRow(numFilas());
             //console.log(this.numFilas);
             let cell1 = row.insertCell(0);
@@ -29,7 +30,6 @@ function numFilas() {
 
             cell1.setAttribute('scope','row')
 
-
             cell1.innerHTML =`<b>${numFilas()}</b>`;
             cell2.innerHTML = nombre.value;
             cell3.innerHTML = apellido.value;
@@ -37,12 +37,20 @@ function numFilas() {
             cell5.innerHTML = `<a href="#" class="btn btn-primary eliminar" >Eliminar</a>`;
             cell6.innerHTML =`<a href="#" class="btn btn-warning">Editar</a>`;
             console.log('Fila '+numFilas());
-        } else {
+        } else if (btnAgregar.value == 'Editar') {
+            fila = tabla.children[codigo.value-1];
+            celda = fila.getElementsByTagName('td');
 
+            celda[1].innerHTML = nombre.value;
+            celda[2].innerHTML = apellido.value;
+            celda[3].innerHTML = celular.value;
+            accion.value = 'Agregar';
+            limpiarCampos();
         }
 
 
     }
+
     let personas = document.getElementById('personas');
     personas.addEventListener('mouseover', function(event){
         event.preventDefault();
@@ -63,6 +71,7 @@ function numFilas() {
                 e.preventDefault();
                 fila.remove();
                 limpiarCampos();
+                accion.value = 'Agregar';
             });
 
             /*EVENTO EDITAR FILA*/
@@ -80,11 +89,12 @@ function numFilas() {
                 const celular = document.getElementById('celular');
 
             //    nombre.setAttribute('value', fila.children[1].value);
-                codigo.value = fila.children[0].textContent;
+                codigo.value = fila.rowIndex ;
                 nombre.value = fila.children[1].textContent;
                 apellido.value = fila.children[2].textContent;
                 celular.value = fila.children[3].textContent;
                 console.log(nombre.value);
+                accion.value = 'Editar';
             });
 
         }
@@ -105,7 +115,12 @@ function numFilas() {
 
     function cambiarAccion(){
         let accion = document.getElementById('agregar');
-        accion.value = 'Editar';
+        if (accion.value == 'Agregar') {
+            accion.value = 'Editar';
+        } else  if (accion.value == 'Editar'){
+            accion.value = 'Agregar';
+        }
+
     }
 
     function createInputID(){
