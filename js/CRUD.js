@@ -28,12 +28,64 @@ function numFilas() {
 
      cell1.setAttribute('scope','row')
 
-     cell1.innerHTML =`<b>${numFilas()+1}</b>`;
+     const aboton = document.createElement('a');
+     aboton.className = 'btn btn-primary eliminar';
+     aboton.setAttribute('href','#');
+     aboton.innerHTML = 'Eliminiar';
+     cell1.innerHTML =`<b>${numFilas()}</b>`;
      cell2.innerHTML = nombre.value;
      cell3.innerHTML = apellido.value;
      cell4.innerHTML = celular.value;
-     cell5.innerHTML = `<a href="#" class="btn btn-primary">Eliminar</a>`;
+     //cell5.innerHTML = `<a href="#" class="btn btn-primary eliminar" >Eliminar</a>`;
+     cell5.appendChild(aboton);
      cell6.innerHTML =`<a href="#" class="btn btn-warning">Editar</a>`;
-     console.log(numFilas());
+     console.log('Fila '+numFilas());
 
     }
+
+    document.addEventListener('mouseover', function(event){
+        event.preventDefault();
+        var fila =event.target.closest('tr');
+        if ( fila == null) {
+            console.log('fila Nulo');
+        } else {
+            var btn = document.querySelector('.eliminar');
+            console.log(fila);
+
+            console.log(fila.children[4].children[0]);
+
+
+            eliminarFila = fila.children[4].children[0];
+            eliminarFila.addEventListener('click',function(e){
+                e.preventDefault();
+                fila.remove();
+
+            });
+
+        }
+    });
+    // var btnclick = function () {
+    //     console.log(btn);
+    // };
+
+    // btn.addEventListener('click', btnclick);
+
+    // $(document).on('click', '.eliminar', function (event) {
+    // event.preventDefault();
+    // $(this).closest('tr').remove();
+    // });
+
+    // function eliminarRow(e){
+    //     e.preventDefault();
+    //     //var indice = querySelector('.eliminar');
+    //     var td = t.parentNode;
+    //    var tr = td.parentNode;
+    //    var table = tr.parentNode;
+    //      // console.log(tr.firstElementChild.innerHTML);
+    //      // console.log(table.children[0]);
+    //     console.log(tr.sectionRowIndex);
+    //
+    //     table.removeChild(tr);
+    //
+    //
+    // }
